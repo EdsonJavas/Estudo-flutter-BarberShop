@@ -6,7 +6,6 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -24,8 +23,13 @@ class _LoginPageState extends State<LoginPage> {
     if (email == emailInput.trim() && password == passwordInput.trim()) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
+    } else {
+      setState(() {
+        emailError = email != emailInput.trim();
+        passwordError = password != passwordInput.trim();
+      });
     }
   }
 
@@ -47,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                 onChanged: (value) => {
                   setState(() {
                     emailInput = value;
+                    emailError = false;
                   })
                 },
                 decoration: InputDecoration(
@@ -54,11 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  errorText: emailError ? 'Email inválido' : null,
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.red),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+                  errorText: emailError ? 'Email incorreto' : null,
                 ),
               ),
               const SizedBox(height: 20.0),
@@ -66,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 onChanged: (value) => {
                   setState(() {
                     passwordInput = value;
+                    passwordError = false;
                   })
                 },
                 obscureText: true,
@@ -74,11 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  errorText: passwordError ? 'Senha inválida' : null,
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.red),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+                  errorText: passwordError ? 'Senha incorreta' : null,
                 ),
               ),
               const SizedBox(height: 20.0),
@@ -110,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
                 child: const Text(
-                  'Não tem cadastro? Sing Up',
+                  'Não tem cadastro? Cadastre-se',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.black87,
