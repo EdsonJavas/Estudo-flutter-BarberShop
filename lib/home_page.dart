@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             const Text(
-              'Edson Jr',
+              'Nome do usuário',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class HomePage extends StatelessWidget {
                               children: [
                                 const Icon(
                                   Icons.star,
-                                  color: Colors.yellow,
+                                  color: Colors.amber,
                                   size: 18,
                                 ),
                                 const SizedBox(width: 5),

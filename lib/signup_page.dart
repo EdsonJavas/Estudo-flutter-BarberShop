@@ -2,11 +2,20 @@
 
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
 
   bool emailError = false;
+
   bool passwordError = false;
 
   @override
@@ -65,11 +74,6 @@ class SignUpPage extends StatelessWidget {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                errorText: passwordError ? 'Senha inválida' : null,
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),

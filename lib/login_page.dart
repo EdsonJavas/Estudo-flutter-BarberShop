@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final email = 'es553807@gmail.com';
-  final password = '123456';
+  final password = '123';
 
   String emailInput = '';
   String passwordInput = '';
@@ -43,9 +43,9 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                width: 118,
-                height: 118,
-                child: Image.asset("img/logo-removebg-preview.png"),
+                width: 120,
+                height: 120,
+                child: Image.asset("assets/logo-removebg-preview.png"),
               ),
               TextField(
                 onChanged: (value) => {
