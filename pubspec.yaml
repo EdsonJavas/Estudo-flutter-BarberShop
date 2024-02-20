@@ -22,15 +22,16 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter_icons:
-  image_path: "assets/logo.jpg"
+  image_path: "assets/logo.png"
   android: true
+  remove_alpha_ios: true
   ios: true
   adaptive_icon_background: "#fff"
-  adaptive_icon_foreground: "assets/logo.jpg"
+  adaptive_icon_foreground: "assets/logo.png"
 
 flutter:
   assets:
     - assets/logo-removebg-preview.png
-    - assets/logo.jpg
+    - assets/logo.png
     - lottie/
   uses-material-design: true
