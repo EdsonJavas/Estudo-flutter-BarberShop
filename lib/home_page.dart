@@ -15,26 +15,16 @@ class _HomePageState extends State<HomePage> {
 
   final picker = ImagePicker();
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+  Future pickImage(bool fromCamera) async {
+    final pickedFile = await picker.pickImage(
+      source: fromCamera ? ImageSource.camera : ImageSource.gallery,
+    );
 
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
       } else {
-        print('No image selected.');
-      }
-    });
-  }
-
-  Future getCameraImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
+        print('Nenhuma imagem selecionada.');
       }
     });
   }
@@ -55,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           icon: const Icon(Icons.arrow_back),
           color: Colors.black,
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.pop(context);
           },
         ),
       ),
@@ -68,7 +58,7 @@ class _HomePageState extends State<HomePage> {
             Stack(
               children: [
                 GestureDetector(
-                  onTap: getImage,
+                  onTap: () => pickImage(false), // Obtém a imagem da galeria
                   child: Container(
                     height: 120,
                     width: 120,
@@ -89,8 +79,9 @@ class _HomePageState extends State<HomePage> {
                             radius: 50,
                             backgroundImage: FileImage(_image!),
                           )
-                        : const CircleAvatar(
-                            radius: 50,
+                        : const Icon(
+                            Icons.photo_camera_back_rounded,
+                            size: 50,
                           ),
                   ),
                 ),
@@ -98,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                   bottom: 0,
                   right: 0,
                   child: GestureDetector(
-                    onTap: getCameraImage,
+                    onTap: () => pickImage(true), // Obtém a imagem da câmera
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: const BoxDecoration(
